@@ -1,17 +1,24 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, TouchableWithoutFeedback, LayoutAnimation } from 'react-native'
 import { connect } from 'react-redux'
 import { CardSection, Card } from './common'
 import * as actions from '../actions'
-import SelectionReducer from '../reducers/SelectionReducer'
 
 class ListItem extends Component {
+    componentWillUpdate() {
+        LayoutAnimation.spring()
+    }
+
     renderDescription() {
         const { library, expanded } = this.props
 
         if (expanded) {
             return (
-                <Text>{library.description}</Text>
+                <CardSection>
+                    <Text style={{ flex: 1 }}>
+                        {library.description}
+                    </Text>
+                </CardSection>
             )
         }
     }
